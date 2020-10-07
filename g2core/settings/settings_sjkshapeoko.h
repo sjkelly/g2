@@ -49,12 +49,14 @@
 
 #define SOFT_LIMIT_ENABLE           0                       // 0=off, 1=on
 #define HARD_LIMIT_ENABLE           0                       // 0=off, 1=on
-#define SAFETY_INTERLOCK_ENABLE     0                       // 0=off, 1=on
+#define SAFETY_INTERLOCK_ENABLE     1                       // 0=off, 1=on
 
 #define SPINDLE_ENABLE_POLARITY     1                       // 0=active low, 1=active high
 #define SPINDLE_DIR_POLARITY        0                       // 0=clockwise is low, 1=clockwise is high
 #define SPINDLE_PAUSE_ON_HOLD       true
 #define SPINDLE_SPINUP_DELAY        1.0
+#define SPINDLE_PWM_NUMBER          6
+#define SPINDLE_SPEED_CHANGE_PER_MS 7
 
 #define COOLANT_MIST_POLARITY       1                       // 0=active low, 1=active high
 #define COOLANT_FLOOD_POLARITY      1                       // 0=active low, 1=active high
@@ -100,41 +102,41 @@
 #define M1_MOTOR_MAP             AXIS_X            // 1ma
 #define M1_STEP_ANGLE            0.9               // 1sa
 #define M1_TRAVEL_PER_REV        40             // 1tr
-#define M1_MICROSTEPS            16                // 1mi        1,2,4,8
-#define M1_POLARITY              0                 // 1po        0=normal, 1=reversed
+#define M1_MICROSTEPS            64                // 1mi        1,2,4,8
+#define M1_POLARITY              1                 // 1po        0=normal, 1=reversed
 #define M1_POWER_MODE            MOTOR_POWER_MODE  // 1pm        TRUE=low power idle enabled
-#define M1_POWER_LEVEL           0.6
+#define M1_POWER_LEVEL           1.0
 
 #define M2_MOTOR_MAP             AXIS_Y
 #define M2_STEP_ANGLE            0.9
 #define M2_TRAVEL_PER_REV        40
-#define M2_MICROSTEPS            16
+#define M2_MICROSTEPS            64
 #define M2_POLARITY              1
 #define M2_POWER_MODE            MOTOR_POWER_MODE
-#define M2_POWER_LEVEL           0.6
+#define M2_POWER_LEVEL           1.0
 
 #define M3_MOTOR_MAP             AXIS_Y
 #define M3_STEP_ANGLE            0.9
 #define M3_TRAVEL_PER_REV        40
-#define M3_MICROSTEPS            16
+#define M3_MICROSTEPS            64
 #define M3_POLARITY              0
 #define M3_POWER_MODE            MOTOR_POWER_MODE
-#define M3_POWER_LEVEL           0.6
+#define M3_POWER_LEVEL           1.0
 
 #define M4_MOTOR_MAP             AXIS_Z
 #define M4_STEP_ANGLE            1.8
 #define M4_TRAVEL_PER_REV        1.25
-#define M4_MICROSTEPS            16
+#define M4_MICROSTEPS            64
 #define M4_POLARITY              0
 #define M4_POWER_MODE            MOTOR_POWER_MODE
-#define M4_POWER_LEVEL           0.5
+#define M4_POWER_LEVEL           0.6
 
 
 // *** axis settings **********************************************************************************
 
 
 #define X_AXIS_MODE             AXIS_STANDARD           // xam   see canonical_machine.h cmAxisMode for valid values
-#define X_VELOCITY_MAX          800                   // xvm   G0 max velocity in mm/min
+#define X_VELOCITY_MAX          1200                   // xvm   G0 max velocity in mm/min
 #define X_FEEDRATE_MAX          X_VELOCITY_MAX          // xfr   G1 max feed rate in mm/min
 #define X_TRAVEL_MIN            0                       // xtn   minimum travel - used by soft limits and homing
 #define X_TRAVEL_MAX            1000                     // xtm   maximum travel - used by soft limits and homing
@@ -148,7 +150,7 @@
 #define X_ZERO_BACKOFF          0.5                       // xzb   mm
 
 #define Y_AXIS_MODE             AXIS_STANDARD
-#define Y_VELOCITY_MAX          800
+#define Y_VELOCITY_MAX          1200
 #define Y_FEEDRATE_MAX          Y_VELOCITY_MAX
 #define Y_TRAVEL_MIN            0
 #define Y_TRAVEL_MAX            1000
@@ -229,13 +231,13 @@
 
 // *** PWM SPINDLE CONTROL ***
 
-#define P1_PWM_FREQUENCY        5000                    // in Hz
-#define P1_CW_SPEED_LO          3000                // in RPM (arbitrary units)
-#define P1_CW_SPEED_HI          12000
-#define P1_CW_PHASE_LO          0.15                // phase [0..1]
-#define P1_CW_PHASE_HI          0.81
+#define P1_PWM_FREQUENCY        1000                    // in Hz
+#define P1_CW_SPEED_LO          0                // in RPM (arbitrary units)
+#define P1_CW_SPEED_HI          10000
+#define P1_CW_PHASE_LO          0.125                // phase [0..1]
+#define P1_CW_PHASE_HI          0.2
 #define P1_CCW_SPEED_LO         0
 #define P1_CCW_SPEED_HI         0
 #define P1_CCW_PHASE_LO         0.1
 #define P1_CCW_PHASE_HI         0.1
-#define P1_PWM_PHASE_OFF        0.0
+#define P1_PWM_PHASE_OFF        0
